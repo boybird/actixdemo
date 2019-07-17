@@ -20,7 +20,6 @@ pub fn login(req: a_web::Json<LoginForm>) -> impl Responder {
 #[derive(Debug, Serialize, Deserialize)]
 pub struct RegisterForm {
     username: String,
-    name: String,
     password: String,
     email: String,
 }

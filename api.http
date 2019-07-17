@@ -11,8 +11,7 @@ post http://localhost:8000/auth/register
 Content-Type: application/json
 
 {
-    "name":"zxk",
-    "username":"zxk7516",
-    "email":"zxk7516@gmail.com",
+    "username":"zxk7518",
+    "email":"zxk7518@gmail.com",
     "password":"111111"
 }
