@@ -18,7 +18,7 @@ use diesel::r2d2::{ConnectionManager, Pool};
 #[derive(Debug, Serialize, Deserialize, Queryable, Insertable)]
 #[table_name = "users"]
 pub struct User {
-    
+    pub username: String,
     pub email: String,
     pub password: String,
     pub created_at: NaiveDateTime, // only NaiveDateTime works here due to diesel limitations
