@@ -3,6 +3,7 @@
 #![allow(proc_macro_derive_resolution_fallback)]
 #[macro_use] extern crate diesel;
 #[macro_use] extern crate serde_derive;
+#[macro_use] extern crate failure;
  
  use actix_web::{web as a_web, App, HttpRequest, HttpServer, Responder};
  use actix::prelude::{Addr,SyncArbiter};
@@ -13,17 +14,15 @@ use diesel::{r2d2::ConnectionManager, PgConnection};
  mod schema;
  mod web;
  mod models;
+ mod errors;
 
- use models::DbExecutor;
+ // use models::DbExecutor;
 
 fn greet(req: HttpRequest) -> impl Responder {
     let name = req.match_info().get("name").unwrap_or("World");
     format!("Hello {}!", &name)
 }
 
-pub struct AppState {
-    pub db: Addr<DbExecutor>,
-}
 
 fn main() {
 

@@ -24,3 +24,5 @@ uuid = { version = "0.6", features = ["serde", "v4"] }
 chrono = { version = "0.4", features = ["serde"] }
 
 bcrypt = "*"
+
+failure = "0.1.2"
