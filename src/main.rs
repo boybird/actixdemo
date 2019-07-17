@@ -1,3 +1,5 @@
+#![allow(unused_imports)]
+
  #[macro_use]
 extern crate diesel;
  
@@ -17,6 +19,7 @@ fn main() {
             .route("/", a_web::get().to(greet))
             .route("/hi/{name}", a_web::get().to(greet))
             .route("/auth/login", a_web::post().to(web::auth::login))
+            .route("/auth/register", a_web::post().to(web::auth::register))
     })
     .bind("127.0.0.1:8000")
     .expect("Can not bind to port 8000")
