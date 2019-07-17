@@ -27,7 +27,7 @@ pub struct RegisterForm {
 pub fn register(
     req: a_web::Json<RegisterForm>,
     db: a_web::Data<r2d2::Pool<diesel::r2d2::ConnectionManager<diesel::PgConnection>>>,
-) -> impl Responder {
+) -> Result<impl Responder,ServiceError> {
     use crate::schema::users::dsl::*;
 
     let conn = db.get().unwrap();
@@ -42,11 +42,10 @@ pub fn register(
         .values(new_user)
         .execute(&conn)
         .map_err(|error| {
-            println!("{:#?}", error); // for debugging purposes
+            println!("sql error: {:#?}", error); // for debugging purposes
             ServiceError::InternalServerError
-        })
-        .unwrap();
+        })?;
     
     
-    HttpResponse::Ok().json(req.deref())
+    Ok(HttpResponse::Ok().json(req.deref()))
 }
