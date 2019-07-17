@@ -9,7 +9,7 @@ fn main() {
     HttpServer::new(|| {
         App::new()
             .route("/", web::get().to(greet))
-            .route("/{name}", web::get().to(greet))
+            .route("/hi/{name}", web::get().to(greet))
     })
     .bind("127.0.0.1:8000")
     .expect("Can not bind to port 8000")
